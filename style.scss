@@ -1,0 +1,416 @@
+// ===================================================================
+// Global SCSS Variables & Mixins
+// ===================================================================
+
+// Colors
+$colors: (
+    brown: #4E3629,
+    mgray: #98A4AE,
+    gray: #F0F2F3,
+    white: #FFFFFF,
+    darkgreen: #008672,
+    lightgreen: rgba(#008672, 12%),
+    verylightgreen: rgba(#008672, 4%),
+    extralightgreen: rgba(#008672, 0.5%),
+    blue: #007DA0,
+    darkblue: darken(#007DA0, 10%),
+    lightblue: rgba(#007DA0, 12%),
+    verylightblue: rgba(#007DA0, 4%),
+    extralightblue: rgba(#007DA0, 0.5%),
+    tgray: #434343,
+    yellow: #FFC72C,
+    mediumyellow: rgba(#FFC72C, 50%),
+    lightyellow: rgba(#FFC72C, 8%),
+);
+
+@function color($key) {
+    @return map-get($colors, $key);
+}
+
+// Typography
+$font-circular: Circular-Book, Arial, Helvetica, sans-serif;
+$font-minion: minion-pro, "Times New Roman", serif;
+
+// Layout
+$border-radius: 4px;
+$spacing: (
+    lg: 80px,
+    md: 40px,
+    sm: 24px,
+    xs: 16px,
+    xxs: 8px
+);
+
+@function space($key) {
+    @return map-get($spacing, $key);
+}
+
+// Mixins
+@mixin responsive($breakpoint) {
+
+    @if $breakpoint =="sm" {
+        @media (min-width: 600px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="md" {
+        @media (min-width: 900px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="lg" {
+        @media (min-width: 1100px) {
+            @content;
+        }
+    }
+}
+
+// ===================================================================
+// Main Container
+// ===================================================================
+
+.events {
+    padding: space(sm) space(sm);
+    margin: space(sm) auto;
+    gap: space(sm);
+    background: color(white);
+    display: flex;
+    flex-direction: column;
+
+    @include responsive("md") {
+        padding: space(lg) space(md);
+        margin: space(lg) auto;
+        gap: space(md);
+    }
+
+    a,
+    a.link,
+    a:visited {
+        color: color(darkgreen);
+        font-weight: bold;
+        text-decoration: underline;
+
+        &:hover,
+        &:focus {
+            color: color(tgray);
+        }
+
+        &:active {
+            color: black;
+        }
+    }
+
+    a.btn {
+        display: block;
+        text-decoration: none;
+        line-height: 16px;
+        padding: space(xs);
+        letter-spacing: 0.14px;
+        text-transform: uppercase;
+        border-radius: $border-radius;
+        text-align: center;
+        transition: 0.3s;
+        background: color(darkgreen);
+        color: color(white);
+        white-space: nowrap;
+        text-wrap: balance;
+
+        &:hover,
+        &:focus {
+            background: color(tgray);
+            color: color(white);
+        }
+
+        &:active {
+            background: black;
+        }
+    }
+
+    &__intro,
+    &__outro {
+        font-size: 22px;
+        font-style: italic;
+        font-family: $font-minion;
+
+        @include responsive("md") {
+            padding: 0 space(md);
+        }
+    }
+
+    &__row {
+        display: grid;
+        gap: space(sm);
+        grid-template-columns: 1fr;
+
+        &.col-2 {
+            @include responsive("md") {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        &.col-3 {
+            @include responsive("md") {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        &.col-3 {
+            @include responsive("lg") {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    }
+
+    &-card {
+        padding: space(sm);
+        border-radius: $border-radius;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: space(xs);
+        border: 1px solid color(lightgreen);
+        background: color(extralightgreen);
+
+    @include responsive("md") {
+        padding: space(md);
+        gap: space(sm);
+    }
+
+        &__icon {
+            width: 100px;
+            height: 100px;
+            background: lighten(color(gray), 3%);
+            border-radius: 50%;
+            border: 1px solid lighten(color(mgray), 20%);
+            object-fit: scale-down;
+            margin: 0 auto; 
+        }
+
+        &__image {
+            width: 100%;
+            max-width: 260px;
+            margin: 0 auto;
+            height: auto;
+            @include responsive("sm") {
+                max-width: 400px;
+            }
+        }
+
+        &__title {
+            text-align: center;
+            color: color(darkgreen);
+            margin: 0;
+            font-weight: normal;
+        }
+
+        &__description,
+        p {
+            font-family: $font-minion;
+        }
+
+        &__description {
+            border-top: 1px solid color(lightgreen);
+            padding-top: space(sm);
+        }
+
+        &__actions {
+            display: flex;
+            flex-direction: column;
+            gap: space(xxs);
+            width: 100%;
+            text-align: center;
+        }
+
+        &__note {
+            font-size: 16px;
+            color: color(tgray);
+            font-style: italic;
+            font-family: $font-minion;
+        }
+
+        &.standalone {
+            .events-card {
+                &__header {
+                    display: flex;
+                    align-items: center;
+                    gap: space(sm);
+                    flex-direction: column;
+                    @include responsive("md") {
+                        flex-direction: row;
+                    }
+                }
+
+                &__icon {
+                    width: 100px;
+                    height: 100px;
+                    object-fit: scale-down;
+                    margin: 0 auto;
+                }
+
+                @include responsive("md") {
+                    &__icon {
+                        margin: 0;
+                        height: 60px;
+                        width: 60px;
+                    }
+                }
+
+                &__title {
+                    text-align: center;
+                    @include responsive("md") {
+                        text-align: left;
+                    }
+                }
+
+                &__actions {
+                    align-items: flex-start;
+                }
+            }
+        }
+
+        &.minimal {
+            padding: space(md) 0;
+
+            @include responsive("md") {
+                padding: space(md);
+            }
+
+            border: none;
+
+            .events-card {
+                &__title {
+                    color: color(tgray);
+                }
+            }
+        }
+
+        &.padding {
+            padding: 0;
+
+            @include responsive("md") {
+                padding: 0 space(md);
+            }
+        }
+    }
+
+    &-group {
+        padding: space(md);
+        border-radius: $border-radius;
+
+        &.green {
+            border: 1px solid color(lightgreen);
+            background: color(verylightgreen);
+
+            .events-group {
+                &__title {
+                    color: color(darkgreen);
+                    border-bottom: 1px solid color(lightgreen);
+                }
+
+                &__intro {
+                    color: color(darkgreen);
+                }
+            }
+        }
+
+        &.blue {
+            border: 1px solid color(lightblue);
+            background: color(verylightblue);
+
+            .events-group {
+                &__title {
+                    color: color(darkblue);
+                    border-bottom: 1px solid color(lightblue);
+                }
+
+                &__intro {
+                    color: color(blue);
+                }
+
+                &__list {
+                    a {
+                        color: color(blue);
+
+                        &:hover,
+                        &:focus {
+                            color: color(tgray);
+                        }
+
+                        &:active {
+                            color: black;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__content {
+            display: flex;
+            flex-direction: column-reverse;
+            gap: space(md);
+
+            @include responsive("md") {
+                grid-template-columns: calc(70% - space(md)) 30%;
+                display: grid;
+            }
+        }
+
+        &__title {
+            margin: 0;
+            padding-bottom: space(sm);
+            margin-bottom: space(sm);
+        }
+
+        &__intro {
+            font-size: 24px;
+            font-style: italic;
+            font-family: $font-minion;
+            margin-bottom: space(sm);
+        }
+
+        &__list {
+            padding: 0;
+            margin: 0;
+            color: color(tgray);
+            font-family: $font-circular;
+        }
+
+        &__image-container {
+            text-align: center;
+        }
+
+        &__image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin: auto;
+        }
+    }
+
+    &-submission {
+        padding: space(md);
+        border-radius: $border-radius;
+        border: 1px solid color(mediumyellow);
+        background: color(lightyellow);
+
+        &__text {
+            font-family: $font-minion;
+            color: color(brown);
+
+            a {
+                color: color(brown);
+
+                &:hover,
+                &:focus {
+                    color: color(tgray);
+                }
+
+                &:active {
+                    color: black;
+                }
+            }
+        }
+    }
+}
