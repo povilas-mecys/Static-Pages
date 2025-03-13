@@ -173,10 +173,10 @@ $spacing: (
         border: 1px solid color(lightgreen);
         background: color(extralightgreen);
 
-    @include responsive("md") {
-        padding: space(md);
-        gap: space(sm);
-    }
+        @include responsive("md") {
+            padding: space(md);
+            gap: space(sm);
+        }
 
         &__icon {
             width: 100px;
@@ -185,7 +185,7 @@ $spacing: (
             border-radius: 50%;
             border: 1px solid lighten(color(mgray), 20%);
             object-fit: scale-down;
-            margin: 0 auto; 
+            margin: 0 auto;
         }
 
         &__image {
@@ -193,6 +193,7 @@ $spacing: (
             max-width: 260px;
             margin: 0 auto;
             height: auto;
+
             @include responsive("sm") {
                 max-width: 400px;
             }
@@ -221,6 +222,7 @@ $spacing: (
             gap: space(xxs);
             width: 100%;
             text-align: center;
+
         }
 
         &__note {
@@ -237,6 +239,7 @@ $spacing: (
                     align-items: center;
                     gap: space(sm);
                     flex-direction: column;
+
                     @include responsive("md") {
                         flex-direction: row;
                     }
@@ -259,6 +262,7 @@ $spacing: (
 
                 &__title {
                     text-align: center;
+
                     @include responsive("md") {
                         text-align: left;
                     }
@@ -266,6 +270,17 @@ $spacing: (
 
                 &__actions {
                     align-items: flex-start;
+                    text-align: left;
+
+                    &.center {
+                        width: 100%;
+                        align-items: center;
+
+                        @include responsive("sm") {
+                            width: max-content;
+
+                        }
+                    }
                 }
             }
         }

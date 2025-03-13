@@ -183,6 +183,17 @@
 }
 .events-card.standalone .events-card__actions {
   align-items: flex-start;
+  text-align: left;
+}
+.events-card.standalone .events-card__actions.center {
+  width: 100%;
+  align-items: center;
+}
+@media (min-width: 600px) {
+  .events-card.standalone .events-card__actions.center {
+    width: -moz-max-content;
+    width: max-content;
+  }
 }
 .events-card.minimal {
   padding: 40px 0;
