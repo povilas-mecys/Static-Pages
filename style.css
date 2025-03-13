@@ -147,6 +147,7 @@
   color: #434343;
   font-style: italic;
   font-family: minion-pro, "Times New Roman", serif;
+  margin: 0;
 }
 .events-card.standalone .events-card__header {
   display: flex;
