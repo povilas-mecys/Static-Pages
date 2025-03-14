@@ -312,8 +312,12 @@ $spacing: (
     }
 
     &-group {
-        padding: space(md);
+        padding: space(sm);
         border-radius: $border-radius;
+
+        @include responsive("md") {
+            padding: space(md);
+        }
 
         &.green {
             border: 1px solid color(lightgreen);

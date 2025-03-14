@@ -217,8 +217,13 @@
   }
 }
 .events-group {
-  padding: 40px;
+  padding: 24px;
   border-radius: 4px;
+}
+@media (min-width: 900px) {
+  .events-group {
+    padding: 40px;
+  }
 }
 .events-group.green {
   border: 1px solid rgba(0, 134, 114, 0.12);
